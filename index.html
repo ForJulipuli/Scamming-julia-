@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Juli Nangna eigi Valentine oigani?🌹</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka:wght@400;500&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-red: #ff4d6d;
+            --romantic-crimson: #c9184a; 
+            --dark-maroon: #590d22;
+            --romantic-gold: #fefae0;
+            --bg-gradient: linear-gradient(135deg, #47091a 0%, #a4133c 100%);
+        }
+        body.locked { overflow: hidden; position: fixed; width: 100%; }
+        body { 
+            margin: 0; padding: 0; 
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--romantic-gold); 
+            font-family: 'Fredoka', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        .corner-dec { position: absolute; font-size: 40px; opacity: 0.8; pointer-events: none; z-index: 5; }
+        .top-left { top: 20px; left: 20px; transform: rotate(-15deg); }
+        .bottom-right { bottom: 20px; right: 20px; transform: rotate(15deg); }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -50px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+            font-size: 30px;
+            animation: floatUp 14s linear forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        h1, p, b, div, .romantic-item { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); }
+
+        #entryScreen { background: #2b050f; z-index: 2000; position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        .rose-envelope { 
+            position: relative; width: 240px; height: 160px; background: var(--romantic-crimson); 
+            border-radius: 0 0 5px 5px; cursor: pointer; border: 2px solid rgba(255,255,255,0.3);
+            animation: envFloat 4s ease-in-out infinite;
+        }
+        .rose-flap { position: absolute; top: -2px; left: -2px; width: 0; height: 0; border-left: 122px solid transparent; border-right: 122px solid transparent; border-top: 100px solid var(--romantic-crimson); z-index: 10; filter: brightness(0.85); }
+
+        .screen { min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; position: relative; }
+        #mainContent { display: none; }
+        .active { display: flex !important; }
+        .active-block { display: block !important; }
+
+        h1 { font-family: 'Cherry Bomb One', cursive; font-size: 2.1rem; color: #ffb3c1; margin: 20px 0; z-index: 2; }
+        .timer-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 25px 0; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px); padding: 15px; border-radius: 20px; border: 1px solid var(--romantic-crimson); width: 90%; max-width: 400px; z-index: 2; margin-left: auto; margin-right: auto;}
+        .timer-val { font-size: 1.5rem; font-weight: bold; color: #ffb3c1; }
+
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 30px; z-index: 2; width: 100%; }
+        .button-row { display: flex; gap: 20px; justify-content: center; align-items: center; min-height: 60px; }
+        button { padding: 15px 35px; font-size: 1.1rem; border: none; border-radius: 50px; font-family: 'Fredoka', sans-serif; cursor: pointer; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        #yesBtn { background: var(--light-red); color: white; }
+        #noBtn { background: #ffb3c1; color: var(--dark-maroon); position: relative; }
+        #hintText { font-family: 'Indie Flower'; font-size: 1.3rem; color: var(--romantic-gold); min-height: 1.5em; font-weight: bold; margin-top: 10px; }
+
+        .row { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; box-sizing: border-box; }
+        .promise-card { background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 25px; width: 85%; border: 2px dashed var(--romantic-crimson); z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.5); color: var(--dark-maroon); text-shadow: none; }
+
+        .wire-scene { position: relative; width: 100%; height: 450px; margin: 30px 0; }
+        .wire { width: 100%; height: 2px; background: white; position: absolute; top: 40px; width: 100%; opacity: 0.3; }
+        .polaroid { width: 95px; background: white; padding: 8px 8px 15px 8px; box-shadow: 0 8px 15px rgba(0,0,0,0.3); position: absolute; border: 1px solid #eee; animation: swing 3.5s ease-in-out infinite; transform-origin: top center; }
+        @keyframes swing { 0%, 100% { transform: rotate(7deg); } 50% { transform: rotate(-7deg); } }
+        .polaroid img { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; }
+        
+        .envelope-container { position: relative; width: 240px; height: 160px; background: var(--romantic-crimson); border-radius: 0 0 5px 5px; cursor: pointer; margin: 40px 0; border: 2px solid rgba(255,255,255,0.4); z-index: 2; animation: envFloat 4s ease-in-out infinite; }
+        @keyframes envFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .env-flap { position: absolute; top: -2px; left: -2px; width: 0; height: 0; border-left: 122px solid transparent; border-right: 122px solid transparent; border-top: 100px solid var(--romantic-crimson); z-index: 10; transform-origin: top; transition: 0.5s; filter: brightness(0.85); }
+        .open .env-flap { transform: rotateX(180deg); z-index: 1; }
+        .env-letter { position: absolute; bottom: 10px; left: 10px; width: 220px; height: 140px; background: white; padding: 15px; box-sizing: border-box; transition: 0.5s; z-index: 5; font-size: 0.9rem; color: #333; border-radius: 3px; visibility: hidden; opacity: 0; overflow-y: auto; text-align: left; text-shadow: none; }
+        .open .env-letter { transform: translateY(-130px); height: 220px; z-index: 11; visibility: visible; opacity: 1; border: 1px solid var(--romantic-crimson); }
+
+        .pro-image-container { width: 100%; max-width: 550px; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); margin-bottom: 25px; border: 3px solid var(--romantic-crimson); z-index: 2; }
+        .pro-image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .romantic-item { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); width: 90%; max-width: 500px; padding: 20px; margin: 12px 0; border-radius: 15px; border-left: 6px solid var(--romantic-crimson); text-align: left; z-index: 2; color: var(--romantic-gold); }
+        .final-quote { padding: 20px; color: #ffb3c1; font-family: 'Indie Flower'; font-size: 1.3rem; line-height: 1.6; }
+
+        .big-box-container { position: relative; width: 280px; height: 280px; cursor: pointer; margin: 80px auto; animation: boxFloat 3s ease-in-out infinite alternate; z-index: 5; }
+        @keyframes boxFloat { 0% { transform: translateY(0); filter: drop-shadow(0 0 10px var(--romantic-crimson)); } 100% { transform: translateY(-20px); filter: drop-shadow(0 0 30px var(--romantic-crimson)); } }
+        .gift-emoji { font-size: 220px; display: block; transition: 0.3s; }
+        .hidden-cat { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 320px; border-radius: 20px; border: 5px solid var(--romantic-crimson); transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; z-index: 20; }
+        .big-box-container.opened .gift-emoji { opacity: 0; transform: scale(0); }
+        .big-box-container.opened .hidden-cat { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        
+        .cat-gif { border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); margin-bottom: 15px; width: 200px; }
+        .flower-pop { position: fixed; pointer-events: none; z-index: 999; font-size: 40px; animation: popUp 1s ease-out forwards; }
+        @keyframes popUp { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(1.5) translateY(-100px); opacity: 0; } }
+    </style>
+</head>
+
+<body class="locked">
+
+    <audio id="romanticSong" src="https://cdn.discordapp.com/attachments/1467954793313210524/1468240066156429414/Blue_-_Yung_Kai___mood_edits256k.mp3?ex=69834c9e&is=6981fb1e&hm=61d63016c18c0d2f25e79db96438fdf59b00cbf19e967f80bac6255f8cbc2808&" loop></audio>
+
+    <div id="entryScreen">
+        <h1 style="margin-bottom: 40px; color: var(--romantic-gold);">open at your own risk</h1>
+        <div class="rose-envelope" onclick="startEverything()">
+            <div class="rose-flap"></div>
+            <div style="position:absolute; top:60%; left:50%; transform:translate(-50%,-50%); font-size:50px; z-index:11;">🎀</div>
+        </div>
+        <p style="margin-top: 30px; font-size: 1.1rem; color: #ffb3c1;">(win 10000rs )</p>
+    </div>
+
+    <div id="screen1" class="screen">
+        <div class="corner-dec top-left">🎀</div>
+        <div class="corner-dec bottom-right">💖</div>
+        <img id="mainCat" src="https://cdn.discordapp.com/attachments/1467954793313210524/1468203058344235040/GIF_20260203_164352_833.gif?ex=69832a27&is=6981d8a7&hm=6f41db6b23a0c11f1a0cf44b2974914816cdd5f70ae8e518390651e110535eae&" class="cat-gif">
+        <h1>Juli Nangna eigi Valentine oigani?🌹</h1>
+        <div class="btn-container">
+            <div class="button-row">
+                <button id="yesBtn" onclick="handleYes()">Yes! 💖</button>
+                <button id="noBtn" onclick="moveNo()" ontouchstart="moveNo()">No 😢</button>
+            </div>
+            <div id="hintText"></div>
+        </div>
+    </div>
+
+    <div id="mainContent">
+        <div class="row">
+            <div class="corner-dec top-left">💖</div>
+            <div class="corner-dec bottom-right">🎀</div>
+            <img src="https://cdn.discordapp.com/attachments/1467954793313210524/1468211863572578324/GIF_20260203_171244_958.gif?ex=6983325a&is=6981e0da&hm=afb05874d3db9d4689f58605c0f5dfc2abe9a03bb8f75f08d536af7cae466f7d&-cat.gif" class="cat-gif">
+            <h1>Now you are stuck with me!!</h1>
+            <p style="max-width: 80%; font-size: 1.1rem;">umm we just completed one year how about one more and more and More years😉. you see this timer 👇🏻 running let's not make anything stop it 🫂</p>
+            <div class="timer-container">
+                <div class="timer-unit"><span class="timer-val" id="days">0</span><div class="timer-label">Days</div></div>
+                <div class="timer-unit"><span class="timer-val" id="hours">0</span><div class="timer-label">Hrs</div></div>
+                <div class="timer-unit"><span class="timer-val" id="mins">0</span><div class="timer-label">Mins</div></div>
+                <div class="timer-unit"><span class="timer-val" id="secs">0</span><div class="timer-label">Secs</div></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1> Letter For my julipuli❤️</h1>
+            <div class="envelope-container" onclick="this.classList.toggle('open')">
+                <div class="env-flap"></div>
+                <div class="env-letter">
+                    <b>My Love❤️</b><br><br>
+                    Ahm (this is my first time writing a letter tho) ahmm yk how much I love your <b>smile</b>, your <b>eyes</b>, and your <b>hair</b>. But the thing I love most is the way you are comfortable around me. Watching you be yourself makes me even happier..😘
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1> LEMME MAKE SOME PROMISES  💪🏻😏</h1>
+            <div class="promise-card">
+                <p style="text-align: left; font-size: 1.1rem; line-height: 1.8; margin:0;">
+                    💍 To always listen to your stories (i love tea).<br>
+                    🍕 To never let you stay hungry. (Jk imma eat everything)<br>
+                    🫂 To be the shoulder you lean on. (It can carry the legs too😜)<br>
+                    ✨ To choose you, every single day. (Till i die🤤)
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1> GOT SOME PICTURES ✨ </h1>
+            <div class="wire-scene">
+                <div class="wire"></div>
+                <div class="polaroid" style="left: 5%; top: 20px;"><img src="https://cdn.discordapp.com/attachments/1467954793313210524/1467956000681234444/Screenshot_2026-02-03-00-21-30-27_99c04817c0de5652397fc8b56c3b3817.jpg?ex=6982440f&is=6980f28f&hm=4186425358f4d1b742e738cf91ff36f851940490bb68ae2ebf402913a8ecda06&"><div style="font-size:0.6rem; margin-top:5px; color:#333;">together since kids 😎</div></div>
+                <div class="polaroid" style="left: 38%; top: 60px; animation-delay: 0.5s;"><img src="https://cdn.discordapp.com/attachments/1467954793313210524/1467955999523737694/Screenshot_2026-02-03-00-22-36-45_99c04817c0de5652397fc8b56c3b3817.jpg?ex=6982440f&is=6980f28f&hm=301c47e8028b96a1c8716d69a807f05f05764f0059b5c0ec3da00e8a82f86fe0&"><div style="font-size:0.6rem; margin-top:5px; color:#333;">movie nights (but you fall asleep 🙄)</div></div>
+                <div class="polaroid" style="left: 71%; top: 25px; animation-delay: 1s;"><img src="https://cdn.discordapp.com/attachments/1467954793313210524/1467956000202952854/Screenshot_2026-02-03-00-21-52-00_99c04817c0de5652397fc8b56c3b3817.jpg?ex=6982440f&is=6980f28f&hm=7c5bff18c8051b175ad9451a8bf1b748902d4ae21950075848f2735b7c625f81&"><div style="font-size:0.6rem; margin-top:5px; color:#333;">AI-but we look good 😉</div></div>
+            </div>
+            
+            <h1 style="margin-top: 50px;"><b>GF OF THE YEAR 🏆</b></h1>
+            <div class="pro-image-container">
+                <img src="https://cdn.discordapp.com/attachments/1467954793313210524/1468200344881205319/file_00000000f92c72098ddf2dc6ab8952a4.png?ex=698327a0&is=6981d620&hm=e12153cb530ffc1b77abc1dbd69208b904923dc009007516c47fd7ebf892a48e&" alt="Special Memory">
+            </div>
+        </div>
+
+        <div class="row">
+            <h1> BUNCH OF VIRTUAL CHOCOLATE 🍫 AND FLOWERS 🌹</h1>
+            <div class="pro-image-container">
+                <img src="https://cdn.discordapp.com/attachments/1467954793313210524/1467959805841903849/Picsart_26-02-03_00-37-29-239.png?ex=6982479b&is=6980f61b&hm=acd8e2be9ae4cb4d3cdfcf250d80ccd49153ad4167872c5afe6b84f2a8f549d6&" alt="Gift">
+            </div>
+            <div class="romantic-item">dw babygurl you will get the real ones too😉.</div>
+            <div class="romantic-item">💖 Long distance is hard, but you know what else is hard..? my bones (ikik it was a lame joke😅)</div>
+            
+            <div class="final-quote">
+                "Ahh jokes apart, never knew you'd become this precious to me. Loving you makes me love you more and more. I pray that we stay together till our last breath and I make you my valentine each year. Hope we get to celebrate it together soon. I love you soooo much! 😘"
+            </div>
+            
+            <h1 style="margin-top: 100px;"> V-GIFT from your BF..</h1>
+            <div class="big-box-container" onclick="this.classList.toggle('opened')">
+                <span class="gift-emoji">🎁</span>
+                <img class="hidden-cat" src="https://cdn.discordapp.com/attachments/1467954793313210524/1468216271257731197/GIF_20260203_173623_986.gif?ex=69833675&is=6981e4f5&hm=8ec46b147cdaa684975a4c07c2b60fcd42e1546141acaea098cbfa33862974f3&-cat-love.gif" alt="Surprise Cat">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const emotionalCats = [
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468212219597688976/GIF_20260203_172015_608.gif?ex=698332af&is=6981e12f&hm=89fcedd8909ffe7c311f426caa0ed60ed3d9663c578123c90fda47c587144056& -cat.gif", 
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468212501954039819/GIF_20260203_172159_329.gif?ex=698332f2&is=6981e172&hm=9a50728184d3147b5b70d20c5dd8fc66ab9d075b3fdfcd33f1ac5c73cef15fb6&-cat.gif",    
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468210692828958882/GIF_20260203_170115_604.gif?ex=69833143&is=6981dfc3&hm=3f98a2e54112e8e1f079bf42252db8a60528f60a873f1600805545821150bbf8&-cat.gif", 
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468211863174250662/GIF_20260203_171219_242.gif?ex=6983325a&is=6981e0da&hm=d8a6e39713155e755fa309c22f4717cec0ddf8db2597ac1136cacee4257c00cd&-cat.gif",
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468211862272213034/GIF_20260203_170708_797.gif?ex=6983325a&is=6981e0da&hm=415e4d9d5db948910e697ac164047814ff25a3ab9c7bf763e91bebbe9d745bc8&-cat.gif",
+            "https://cdn.discordapp.com/attachments/1467954793313210524/1468211862771470541/GIF_20260203_170526_759.gif?ex=6983325a&is=6981e0da&hm=3fed47743cd77279922ab59d0318b65f2f2c49fc9b632961fce1e1ba161aea0f&-cat.gif",
+        ];
+        let noClicks = 0;
+
+        function startEverything() {
+            document.getElementById('entryScreen').style.display = 'none';
+            document.getElementById('screen1').classList.add('active');
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const hint = document.getElementById('hintText');
+            const cat = document.getElementById('mainCat');
+            cat.src = emotionalCats[noClicks % emotionalCats.length];
+            noClicks++;
+            if(noClicks === 5) hint.innerText = "say yes already 🥺";
+            if(noClicks >= 6) { btn.style.display = "none"; hint.innerText = "Tap it😤"; return; }
+            const maxX = window.innerWidth - btn.offsetWidth - 20;
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            btn.style.position = "fixed";
+            btn.style.left = Math.max(20, Math.random() * maxX) + "px";
+            btn.style.top = Math.max(20, Math.random() * maxY) + "px";
+        }
+
+        function spawnHearts() {
+            if (window.getComputedStyle(document.getElementById('mainContent')).display === 'none') return;
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = Math.random() > 0.5 ? '💓' : '💖';
+            heart.style.left = Math.random() * 90 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 14000);
+        }
+
+        function handleYes() {
+            // PLAY THE SONG ON YES TAP
+            const song = document.getElementById('romanticSong');
+            song.play().catch(e => console.log("Audio play failed:", e));
+
+            document.getElementById('hintText').innerText = "yay, ik you'd say yes.. let's spam YES 😄";
+            for(let i=0; i<15; i++) {
+                setTimeout(() => {
+                    const f = document.createElement('div');
+                    f.className = 'flower-pop';
+                    f.innerHTML = ['❤️','🌹','✨', '💖', '💓'][Math.floor(Math.random()*5)];
+                    f.style.left = Math.random() * 90 + 'vw';
+                    f.style.top = Math.random() * 90 + 'vh';
+                    document.body.appendChild(f);
+                    setTimeout(() => f.remove(), 1000);
+                }, i * 150);
+            }
+            setTimeout(() => {
+                document.body.classList.remove('locked');
+                document.getElementById('screen1').style.display = 'none';
+                document.getElementById('mainContent').classList.add('active-block');
+                setInterval(updateTimer, 1000);
+                setInterval(spawnHearts, 7000); 
+                updateTimer();
+            }, 1200);
+        }
+
+        function updateTimer() {
+            const diff = new Date() - new Date("2025-01-06T00:00:00");
+            document.getElementById('days').innerText = Math.floor(diff / 86400000);
+            document.getElementById('hours').innerText = Math.floor((diff / 3600000) % 24);
+            document.getElementById('mins').innerText = Math.floor((diff / 60000) % 60);
+            document.getElementById('secs').innerText = Math.floor((diff / 1000) % 60);
+        }
+    </script>
+</body>
+</html>
